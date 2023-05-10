@@ -2,7 +2,7 @@ import puppeteer from "puppeteer-core";
 import * as dotenv from 'dotenv';
 dotenv.config()
 
-async function run() {
+export async function run() {
     let browser;
     try {
         const auth = process.env.SCRAPING_LOGIN
@@ -21,13 +21,13 @@ async function run() {
                 // const productURL = product.querySelector('a.a-link-normal[href*="/dp/"]').href;
                 return {
                     title: titleElement ? titleElement.innerText.trim() : null,
-                    price: priceElement ? priceElement.innerText.trim() : null,
+                    price: priceElement ? priceElement.innerText.trim().replace('$', '') : null,
                     // productURL: productURL ? productURL : null
                 };
             });
         });
         
-        console.log(productData);
+        
         
     }
     catch (error) {
@@ -37,5 +37,3 @@ async function run() {
         await browser?.close();
     }
 }
-
-run();
