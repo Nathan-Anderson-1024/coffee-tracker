@@ -12,31 +12,35 @@ import { getProducts } from './util/fetch';
 
 function App() {
   const [error, setError] = useState(false);
-  //const [loading, setLoading] = useState(false);
-  const [productList, setProductList] = useState();
+  const [productList, setProductList] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchProducts = async () => {
-    //setLoading(true);
-    //console.log(loading)
+    setLoading(true);
     const response = await getProducts();
-    //console.log(response);
     if (response.error) {
       setError(response.error.name);
     }
     setProductList(response.data);
-    //setLoading(false)
-    //console.log(loading)
+    setLoading(false);
+    if (productList?.length > 0) {
+      console.log(productList)
+    }
   }
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  if (!productList) {
+    return <div className='text-center'>Loading</div>
+  }
+
   return (
     <div className='App'>
       <NavBar></NavBar>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Home products={productList} />}></Route>
         <Route path="/caffeine" element={<Caffeine />}></Route>
         <Route path="/analyze" element={<TrendAnalysis />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
