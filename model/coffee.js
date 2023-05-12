@@ -4,4 +4,5 @@ const create = (name, price, dateAdded, vendor) => pool.query('INSERT INTO coffe
 
 const get = () => pool.query('SELECT * FROM coffee');
 
+
 module.exports = { create, get }
