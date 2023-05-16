@@ -49,7 +49,6 @@ const insertData = async () => {
     console.log('Scraping Data');
     const scrapeData = await run();
     console.log(scrapeData)
-    //console.log(typeof scrapeData)
     for (let key in scrapeData) {
         const obj = scrapeData[key];
         if (obj.title !== null && obj.price !== null && obj.title.length > 0) {
