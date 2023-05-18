@@ -9,7 +9,7 @@ export default function Product({products}) {
     <div>
       <div className="text-center">
         <h1>{findProduct.name}</h1>
-        <h2>Current Price: ${findProduct.price_array[findProduct.price_array.length - 1]}</h2>
+        <h2>Current Price: ${findProduct.price_array[findProduct.price_array.length - 1].toFixed(2)}</h2>
         <h3>Last Updated: {findProduct.added_array[findProduct.added_array.length - 1]}</h3>
       </div>
       <div></div>

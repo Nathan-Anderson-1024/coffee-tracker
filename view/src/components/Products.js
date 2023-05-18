@@ -9,7 +9,7 @@ export default function Products({products}) {
             <div>
               <Link to={`/products/${index}`}>
                 <h2 className='font-bold'>{product.name}</h2>
-                <p className='text-green-700 font-bold'>${product.price_array[product.price_array.length - 1]}</p>
+                <p className='text-green-700 font-bold'>${product.price_array[product.price_array.length - 1].toFixed(2)}</p>
               </Link>
             </div>
             <button className='mt-1 border rounded-full px-4 py-1 text-sm text-blue-700 font-semibold border-blue-700 hover:text-white hover:bg-blue-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2'>
