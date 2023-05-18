@@ -46,7 +46,7 @@ function App() {
         <Route path="/analyze" element={<TrendAnalysis />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
-        <Route path='/:id' element={<Product />}></Route>
+        <Route path='/products/:id' element={<Product products={productList} />}></Route>
         <Route path="login" element={<Login />}></Route>
       </Routes>
     </div>
