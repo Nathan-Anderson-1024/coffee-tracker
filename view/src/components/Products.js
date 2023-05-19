@@ -8,9 +8,13 @@ export default function Products({ products, setProductList }) {
       <div className="grid lg:grid-cols-4 gap-6 m-2 md:grid-cols-3 sm-grid-cols-2 justify-items-center content-center">
         {products.map((product, index) => {
           return (
-            <div key={index} className="border-2 border-gray-200 pb-1 ">
+            <div key={index} className="border-2 border-gray-200 p-2 flex justify-center flex-col">
               <div>
-                <Link to={`/products/${index}`}>
+                <Link to={`/products/${index}`} className="flex w-full flex-col">
+                  <div className="flex justify-center align-center mb-2">
+                    <img className="object-scale-down h-48 object-center" src={product.img[0]} alt={"item"}></img>
+                  </div>
+                  
                   <h2 className="font-bold">{product.name}</h2>
                   <p className="text-green-700 font-bold">
                     $

@@ -8,7 +8,7 @@ const create = (name, price, dateAdded, vendor) => pool.query('INSERT INTO coffe
 //    array_agg(date_added)
 //  FROM coffee
 //  GROUP BY name;
-const get = () => pool.query('SELECT name, array_agg(price) as price_array, array_agg(date_added) as added_array FROM coffee GROUP BY name');
+const get = () => pool.query('SELECT name, array_agg(price) as price_array, array_agg(date_added) as added_array, array_agg(img) as img FROM coffee GROUP BY name');
 
 
 module.exports = { create, get }
