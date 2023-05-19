@@ -41,7 +41,7 @@ function App() {
     <div className='App'>
       <NavBar></NavBar>
       <Routes>
-        <Route path="/" element={<Home products={productList} />}></Route>
+        <Route path="/" element={<Home products={productList} setProductList={setProductList} />}></Route>
         <Route path="/caffeine" element={<Caffeine />}></Route>
         <Route path="/analyze" element={<TrendAnalysis />}></Route>
         <Route path="/contact" element={<Contact />}></Route>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import SortBy from "./SortBy";
-export default function Products({ products }) {
+import SortBy from "./sort/SortBy";
+export default function Products({ products, setProductList }) {
   return (
     <>
-      <SortBy></SortBy>
+      <SortBy products={products} setProductList={setProductList}></SortBy>
       <div className="grid lg:grid-cols-4 gap-6 m-2 md:grid-cols-3 sm-grid-cols-2 justify-items-center content-center">
         {products.map((product, index) => {
           return (
