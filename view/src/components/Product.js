@@ -26,7 +26,7 @@ export default function Product({products}) {
               return (
                 <tr key={index}>
                   <td className='border py-2'>{new Date(date).toISOString().split('T')[0]}</td>
-                  <td className='border py-2'>{findProduct.price_array[index]}</td>
+                  <td className='border py-2'>{findProduct.price_array[index].toFixed(2)}</td>
                 </tr>
                 
               )
