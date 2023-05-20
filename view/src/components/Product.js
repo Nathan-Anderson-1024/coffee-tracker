@@ -8,8 +8,12 @@ export default function Product({products}) {
   return (
     <div className='mt-12'>
       <div className="text-center">
-        <h1>{findProduct.name}</h1>
-        <h2>Current Price: ${findProduct.price_array[findProduct.price_array.length - 1].toFixed(2)}</h2>
+        <div className='flex justify-center mb-6'>
+          <img src={findProduct.img[0]} className="object-scale-downobject-center"></img>
+        </div>
+        
+        <h1 className='font-bold'>{findProduct.name}</h1>
+        <h2 className='font-bold'>Current Price: <span className='font-bold text-green-700'>${findProduct.price_array[findProduct.price_array.length - 1].toFixed(2)}</span></h2>
         <h3>Last Updated: {findProduct.added_array[findProduct.added_array.length - 1]} from Amazon.</h3>
       </div>
       <div className='flex justify-center mt-12'>
@@ -32,17 +36,6 @@ export default function Product({products}) {
               )
               
             })}
-            {/* {findProduct.price_array.map((price) => {
-              return (
-                <tr>
-                  <td>{price}</td>
-                </tr>
-                
-              )
-            })} */}
-          
-          
-            
           </tbody>
         </table>
       </div>
