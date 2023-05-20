@@ -1,29 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function NavBar() {
+    const [clicked, setClicked] = useState(false);
+    const handleClick = (e) => {
+        setClicked(!clicked);
+    }
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <NavLink to="/"   className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "flex items-center"}>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CoffeeTracker</span>
                 </NavLink>
-                <div className="flex items-center md:order-2">
-                    <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <div className="flex items-center md:order-2 relative">
+                    <button onClick={handleClick} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span className="sr-only">Open user menu</span>
                         <img className="w-8 h-8 rounded-full" src={require('../imgs/icons8-customer-64.png')} alt="user profile"></img>
                     </button>
-                    <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                    <div className={`absolute top-2 left-10 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 ${clicked ? 'visible' : 'hidden'}`} id="user-dropdown">
                         <div className="px-4 py-3">
                             <span className="block text-sm text-gray-900 dark:text-white">John Smith</span>
                             <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">test@example.com</span>
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <NavLink to="/settings" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Settings</NavLink>
+                                <NavLink to="/settings" onClick={handleClick} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Settings</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/login" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Sign Out</NavLink>
+                                <NavLink to="/login" onClick={handleClick} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Sign Out</NavLink>
                             </li>
                         </ul>
                     </div>

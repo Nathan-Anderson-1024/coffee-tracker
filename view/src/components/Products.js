@@ -12,7 +12,8 @@ export default function Products({ products, setProductList }) {
               <div>
                 <Link to={`/products/${index}`} className="flex w-full flex-col">
                   <div className="flex justify-center align-center mb-2">
-                    <img className="object-scale-down h-48 object-center" src={product.img[0]} alt={"image not available"}></img>
+                    {/* <img className="object-scale-down h-48 object-center" src={product.img[0]} alt={"image not available"}></img> */}
+                    {product.img[0] ? <img className="object-scale-down h-48 object-center" src={product.img[0]} alt={product.name}></img> : <h4>Image not available.</h4>}
                   </div>
                   
                   <h2 className="font-bold">{product.name}</h2>
