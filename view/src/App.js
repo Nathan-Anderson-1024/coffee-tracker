@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import { useEffect, useState } from 'react';
 import { getProducts } from './util/fetch';
 import Product from './components/Product';
+import Register from './pages/Register';
 
 function App() {
   const [error, setError] = useState(false);
@@ -47,7 +48,8 @@ function App() {
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
         <Route path='/products/:id' element={<Product products={productList} />}></Route>
-        <Route path="login" element={<Login />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
       </Routes>
     </div>
   );

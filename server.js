@@ -38,5 +38,21 @@ app.post('/login', passport.authenticate('local', {
 PORT = process.env.PORT || 3001
 
 app.use('/api', productRouter)
+// add to submit a resource routes
+
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
+//add to register route
+const checkNotAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.redirect('/')
+    }
+    next();
+}
 
 app.listen(PORT, () => {console.log(`Server listening on ${PORT}.`)})
+
