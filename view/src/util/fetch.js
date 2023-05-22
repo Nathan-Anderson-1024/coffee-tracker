@@ -9,3 +9,18 @@ export const getProducts = async () => {
     }
     
 };
+
+export const createUser = async (userInfo) => {
+    try {
+        const data = await fetch('/api/register', {
+            method: 'POST',
+            body: userInfo
+        });
+        const content = await data.json()
+        
+        return content;
+    }
+    catch (error) {
+        return {error}
+    }
+}

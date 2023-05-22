@@ -26,6 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
+app.use(express.urlencoded({extended: false}))
 
 
 app.post('/login', passport.authenticate('local', {
@@ -33,6 +34,23 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }))
+
+const {createUser} = require('./model/coffee')
+
+// app.post('/register', async (req, res) => {
+//     try {
+//         console.log(req.body)
+//         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+//         console.log(hashedPassword)
+//         const email = req.body.email;
+//         console.log(email)
+//         await createUser(email, hashedPassword);
+//         res.redirect('/');
+//     }
+//     catch {
+//         res.redirect('/register');
+//     }
+// })
 
 
 PORT = process.env.PORT || 3001
