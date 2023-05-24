@@ -6,5 +6,8 @@ const get = () => pool.query('SELECT name, array_agg(price) as price_array, arra
 
 const createUser = (email, password) => pool.query('INSERT INTO users (username, password, email, created_date) VALUES ($1, $2, $3, $4) RETURNING *', [email, password, email, new Date().toISOString().split('T')[0]]);
 
-const checkEmail = (email) => pool.query('SELECT * FROM users WHERE email = $1', [email]);
-module.exports = { create, createUser, get, checkEmail }
+const checkEmail = (email) => pool.query('SELECT user_id, username, password FROM users WHERE email = $1', [email]);
+
+const getUserId = (email) => pool.query('SELECT user_id FROM users WHERE email = $1', [email])
+
+module.exports = { create, createUser, get, checkEmail, getUserId }
