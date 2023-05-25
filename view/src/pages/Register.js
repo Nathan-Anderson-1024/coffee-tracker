@@ -11,6 +11,10 @@ export default function Register() {
   return (
     <div className='text-center'>
       <form className='flex flex-col justify-center items-center' onSubmit={(e) => handleSubmit(e)}>
+        <label htmlFor='name'>First Name</label>
+        <input name="name" id="name" placeholder='John' className='border border-black w-2/4' required></input>
+        <label htmlFor='lastName'>Last Name</label>
+        <input name="lastName" id="lastName" placeholder='Smith' className='border border-black w-2/4' required></input>
         <label htmlFor='email'>Email</label>
         <input name="email" id='email' type='email' placeholder='test@example.com' className='border border-black w-2/4' required></input>
         <label htmlFor='password'>Password</label>

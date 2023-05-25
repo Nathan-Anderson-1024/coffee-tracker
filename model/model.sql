@@ -12,7 +12,9 @@ CREATE TABLE coffee (
 CREATE TABLE users(
   user_id serial PRIMARY KEY,
   username varchar(50) NOT NULL UNIQUE,
-  password varchar(50) NOT NULL,
+  first_name varchar(50) NOT NULL,
+  last_name varchar(50) NOT NULL,
+  password varchar(255) NOT NULL,
   email varchar(255) NOT NULL UNIQUE,
   created_date TIMESTAMP NOT NULL,
   last_login TIMESTAMP

@@ -18,7 +18,7 @@ exports.write = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.parse(req, async (err, fields) => {
-    const {email, password} = fields;
+    const {email, password, name, lastName} = fields;
     if (!email || !password) {
       return res.status(400).json({
         error: "email or password cannot be blank"
@@ -34,7 +34,7 @@ exports.write = (req, res) => {
     
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
-      await createUser(email, hashedPassword);
+      await createUser(email, hashedPassword, name, lastName);
     }
     catch (error) {
       return res.status(400).json({

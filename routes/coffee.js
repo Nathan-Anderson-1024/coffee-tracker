@@ -3,6 +3,7 @@ const router = express.Router();
 const {read, write, login} = require('../controllers/index');
 
 const passport = require("passport");
+const { checkEmail } = require('../model/coffee');
 require("../passport-config")(passport);
 
 // Create GET route to read products
@@ -15,7 +16,6 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     }
     res.send(userInfo)
 })
-// router.post('/register', (req, res) => {
-//     console.log(req)
-// })
+router.get('/login', checkEmail)
+
 module.exports = router;

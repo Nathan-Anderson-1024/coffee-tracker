@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import { useEffect, useState } from 'react';
-import { getProducts } from './util/fetch';
+import { getProducts, getFirstLastName } from './util/fetch';
 import Product from './components/Product';
 import Register from './pages/Register';
 
@@ -16,6 +16,11 @@ function App() {
   const [error, setError] = useState(false);
   const [productList, setProductList] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [login, setLogin] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -30,17 +35,26 @@ function App() {
     }
   }
 
+  const getFirstLast = async () => {
+    setLoading(true);
+    const response = await getFirstLastName();
+    console.log(response)
+  }
   useEffect(() => {
     fetchProducts();
+    if (login) {
+      console.log('login true')
+      getFirstLast();
+    }
   }, []);
 
   if (!productList) {
-    return <div className='text-center'>Loading</div>
+    return <div className='text-center'>LOADING..</div>
   }
 
   return (
     <div className='App'>
-      <NavBar></NavBar>
+      <NavBar username={username}></NavBar>
       <Routes>
         <Route path="/" element={<Home products={productList} setProductList={setProductList} />}></Route>
         <Route path="/caffeine" element={<Caffeine />}></Route>
@@ -48,8 +62,8 @@ function App() {
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
         <Route path='/products/:id' element={<Product products={productList} />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path='/register' element={<Register />}></Route>
+        <Route path="/login" element={<Login loading={loading} setLoading={setLoading} login={login} setLogin={setLogin} username={username} setUsername={setUsername} />}></Route>
+        <Route path='/register' element={<Register loading={loading} setLoading={setLoading} />}></Route>
       </Routes>
     </div>
   );

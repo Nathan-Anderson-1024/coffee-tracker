@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, redirect, useNavigate } from 'react-router-dom'
 import { loginUser } from '../util/fetch';
- import { useNavigate } from 'react-router-dom';
-export default function Login() {
-
-  const [username, setUsername] = useState('');
+export default function Login({loading, setLoading, login, setLogin, username, setUsername}) {
+  // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const nav = useNavigate();
+
 
   const handleUserName = (e) => {
     const value = e.target.value;
@@ -17,8 +17,21 @@ export default function Login() {
   }
   const handleButton = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    await loginUser(username, password);
+    setLoading(true)
+    const status = await loginUser(username, password);
+    if (status.status == 200) {
+      setLoading(false);
+      setLogin(true)
+      nav('/')
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className='text-center'>
+        <h1>LOADING...</h1>
+      </div>
+    )
   }
   return (
     <div className='text-center'>
