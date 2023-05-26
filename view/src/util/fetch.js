@@ -1,10 +1,7 @@
-import { redirect, useNavigate } from 'react-router-dom'
-
 
 export const getProducts = async () => {
     try {
         const response = await fetch('/api/coffee');
-        console.log(response);
         const json = await response.json();
         return json
     } catch (error) {
@@ -54,12 +51,39 @@ export const loginUser = async (username, password) => {
     }
 }
 
+export const logoutUser = async () => {
+    // const jsonPayload = JSON.stringify({
+    //     email: username,
+    //     password: password,
+    // })
+    try {
+        const request = await fetch('/api/logout', {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            // body: jsonPayload
+        })
+        console.log(request)
+        if (request.status === 200) {
+            console.log('logging out')
+            // setLogin(true);
+            return request
+           
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
 export const getFirstLastName = async (email) => {
     try {
         const data = await fetch('/api/login', {
             method: 'GET',
             body: email
         })
+        console.log(data);
     }
     catch (error) {
         return console.log(error)

@@ -24,9 +24,9 @@ const initialize = (passport) => {
     passport.serializeUser(function(user, done) {
         done(null, user);
       });
-      passport.deserializeUser(function(user, done) {
+    passport.deserializeUser(function(user, done) {
         done(null, user);
-      });
+    });
     // passport.serializeUser((user, done) => done(null, user.id))
     // passport.deserializeUser(async (id, done) => {
     //     return done(null, await getId(id))

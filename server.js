@@ -20,7 +20,7 @@ app.use(session({
     cookie: { sameSite: 'strict' }
 }))
 
-app.use( (req, res, next) => {  console.log('req.session', req.session);  return next()});
+
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -36,7 +36,7 @@ PORT = process.env.PORT || 3001
 
 app.use('/api', productRouter)
 // add to submit a resource routes
-
+app.use( (req, res, next) => {  console.log('req.session', req.session);  return next()});
 
 app.listen(PORT, () => {console.log(`Server listening on ${PORT}.`)})
 

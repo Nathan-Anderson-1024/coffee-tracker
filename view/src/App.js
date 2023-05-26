@@ -20,6 +20,7 @@ function App() {
   const [login, setLogin] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('')
 
 
   const fetchProducts = async () => {
@@ -35,17 +36,10 @@ function App() {
     }
   }
 
-  const getFirstLast = async () => {
-    setLoading(true);
-    const response = await getFirstLastName();
-    console.log(response)
-  }
+  
   useEffect(() => {
     fetchProducts();
-    if (login) {
-      console.log('login true')
-      getFirstLast();
-    }
+    console.log(login)
   }, []);
 
   if (!productList) {
@@ -54,7 +48,7 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar username={username}></NavBar>
+      <NavBar username={username} login={login} fullName={fullName} setLogin={setLogin}></NavBar>
       <Routes>
         <Route path="/" element={<Home products={productList} setProductList={setProductList} />}></Route>
         <Route path="/caffeine" element={<Caffeine />}></Route>
@@ -62,7 +56,7 @@ function App() {
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
         <Route path='/products/:id' element={<Product products={productList} />}></Route>
-        <Route path="/login" element={<Login loading={loading} setLoading={setLoading} login={login} setLogin={setLogin} username={username} setUsername={setUsername} />}></Route>
+        <Route path="/login" element={<Login loading={loading} setLoading={setLoading} login={login} setLogin={setLogin} username={username} setUsername={setUsername} setError={setError} error={error} fullName={fullName} setFullName={setFullName} />}></Route>
         <Route path='/register' element={<Register loading={loading} setLoading={setLoading} />}></Route>
       </Routes>
     </div>

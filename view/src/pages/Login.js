@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { NavLink, redirect, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { loginUser } from '../util/fetch';
-export default function Login({loading, setLoading, login, setLogin, username, setUsername}) {
+export default function Login({loading, setLoading, login, setLogin, username, setUsername, error, setError, fullName, setFullName}) {
   // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(false);
   const nav = useNavigate();
 
 
@@ -19,9 +20,19 @@ export default function Login({loading, setLoading, login, setLogin, username, s
     e.preventDefault();
     setLoading(true)
     const status = await loginUser(username, password);
+    if (status == undefined) {
+      setLoading(false)
+      setLoginError(true);
+      setTimeout(() => {
+        setLoginError(false)
+      }, 3000)
+      return nav('/login')
+    }
     if (status.status == 200) {
+      const json = await status.json();
       setLoading(false);
       setLogin(true)
+      setFullName(`${json.firstName} ${json.lastName}`)
       nav('/')
     }
   }
@@ -30,6 +41,13 @@ export default function Login({loading, setLoading, login, setLogin, username, s
     return (
       <div className='text-center'>
         <h1>LOADING...</h1>
+      </div>
+    )
+  }
+  if (loginError) {
+    return (
+      <div className='text-center'>
+        <h1>Incorrect username or password.</h1>
       </div>
     )
   }
