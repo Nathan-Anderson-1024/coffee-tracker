@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SortBy from "./sort/SortBy";
 export default function Products({ products, setProductList }) {
@@ -8,7 +8,7 @@ export default function Products({ products, setProductList }) {
       <div className="grid lg:grid-cols-4 gap-6 m-2 md:grid-cols-3 sm-grid-cols-2 justify-items-center content-center">
         {products.map((product, index) => {
           return (
-            <div key={index} className="border-2 border-gray-200 p-2 flex justify-center flex-col items-center">
+            <div key={index} className="border-2 border-gray-200 p-2 flex justify-center flex-col items-center rounded-sm">
               <div>
                 <Link to={`/products/${index}`} className="flex w-full flex-col">
                   <div className="flex justify-center align-center mb-2">
