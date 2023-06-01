@@ -54,7 +54,7 @@ function App() {
         <Route path="/caffeine" element={<Caffeine />}></Route>
         <Route path="/analyze" element={<TrendAnalysis />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/settings" element={<Settings />}></Route>
+        <Route path="/settings" element={<Settings username={username} fullName={fullName} />}></Route>
         <Route path='/products/:id' element={<Product products={productList} />}></Route>
         <Route path="/login" element={<Login loading={loading} setLoading={setLoading} login={login} setLogin={setLogin} username={username} setUsername={setUsername} setError={setError} error={error} fullName={fullName} setFullName={setFullName} />}></Route>
         <Route path='/register' element={<Register loading={loading} setLoading={setLoading} />}></Route>
