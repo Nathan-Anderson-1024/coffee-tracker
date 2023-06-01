@@ -34,7 +34,7 @@ export default function NavBar({username, login, fullName, setLogin}) {
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <NavLink to="/settings" onClick={handleClick} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Settings</NavLink>
+                                <NavLink to="/settings" onClick={handleClick} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"} style={({isActive, isPending}) => {return {color: isActive ? 'wheat' : ''}}}>Settings</NavLink>
                             </li>
                             <li>
                                 <button to="/login" onClick={handleLogout} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"}>Sign Out</button>
