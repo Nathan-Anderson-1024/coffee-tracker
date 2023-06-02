@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { loginUser } from '../util/fetch';
-export default function Login({loading, setLoading, login, setLogin, username, setUsername, error, setError, fullName, setFullName}) {
+export default function Login({setEmail, loading, setLoading, login, setLogin, username, setUsername, error, setError, fullName, setFullName}) {
   // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -33,6 +33,7 @@ export default function Login({loading, setLoading, login, setLogin, username, s
       setLoading(false);
       setLogin(true)
       setFullName(`${json.firstName} ${json.lastName}`)
+      setEmail(`${json.email}`)
       nav('/')
     }
   }

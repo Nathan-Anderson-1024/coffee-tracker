@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const initialize = (passport) => {
     const authenticateUser = async (email, password, done) => {
         const user = await emailExists(email)
-        console.log(user)
         if (user == null) {
             return done(null, false, {message: 'No user with that email'})
         }
@@ -27,10 +26,6 @@ const initialize = (passport) => {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
-    // passport.serializeUser((user, done) => done(null, user.id))
-    // passport.deserializeUser(async (id, done) => {
-    //     return done(null, await getId(id))
-    // })
 }
 
 

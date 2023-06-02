@@ -14,7 +14,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     const userInfo = {
         username:req.user.username,
         firstName: req.user.first_name,
-        lastName: req.user.last_name
+        lastName: req.user.last_name,
+        email: req.user.email
     }
     res.send(userInfo)
 })
