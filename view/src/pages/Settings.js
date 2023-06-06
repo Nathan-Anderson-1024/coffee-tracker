@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Settings({username, fullName, email}) {
+export default function Settings({username, setUsername, fullName, setFullName, email, setEmail}) {
+  const [disabled, setDisabled] = useState(true)
   const handleUpdateInfo = () => {
     
   }
@@ -25,7 +26,7 @@ export default function Settings({username, fullName, email}) {
       
       <label htmlFor='email'>Email</label>
       <input id='email' className='border rounded border-slate-900' defaultValue={email}></input>
-      <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white'>Update Information</button>
+      <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white' disabled={disabled}>Update Information</button>
     </form>
     <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2 className='underline mt-10 font-bold'>Change Password</h2>
