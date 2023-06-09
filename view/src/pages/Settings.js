@@ -19,14 +19,14 @@ export default function Settings({username, setUsername, fullName, setFullName, 
       
       <label htmlFor='lastName'>Last Name</label>
       <input id='lastName' className='border rounded border-slate-900' defaultValue={fullName.split(" ")[1]}></input> */}
-      <label htmlFor='fullName'>Full Name</label>
+      <label htmlFor='fullName' className='font-bold'>Full Name</label>
       <input id='fullName' className='border rounded border-slate-900' defaultValue={fullName} onSubmit={(e) => setFullName(e.target.value)}></input>
-      <label htmlFor='userName'>Username</label>
+      <label htmlFor='userName' className='font-bold'>Username</label>
       <input id='userName' className='border rounded border-slate-900 text-black' defaultValue={username} onSubmit={(e) => setUsername(e.target.value)}></input>
       
       
       
-      <label htmlFor='email'>Email</label>
+      <label htmlFor='email' className='font-bold'>Email</label>
       <input id='email' className='border rounded border-slate-900' defaultValue={email} onSubmit={(e) => setEmail(e.target.value)}></input>
       <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white' type='submit'>Update Information</button>
     </form>
@@ -39,7 +39,7 @@ export default function Settings({username, setUsername, fullName, setFullName, 
         <input id='NewPassword' className='border rounded border-slate-900'></input>
         <label htmlFor='confirmNewPassword'>Confirm New Password</label>
         <input id='confirmNewPassword' className='border rounded border-slate-900'></input>
-        <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white'>Change Password</button>
+        <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white'>Update Password</button>
       </form>
     </div>
     </>

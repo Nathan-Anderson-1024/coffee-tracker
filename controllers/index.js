@@ -1,4 +1,4 @@
-const {get, createUser, checkEmail, getUserId} = require('../model/coffee');
+const {get, createUser, checkEmail, getUserId, updateUserInfo} = require('../model/coffee');
 const formidable = require('formidable');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
@@ -71,5 +71,9 @@ exports.login = (req, res) => {
 
   })
 
+
+}
+
+exports.update = async (req, res) => {
 
 }

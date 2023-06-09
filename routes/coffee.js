@@ -27,4 +27,6 @@ router.post('/logout', function (req, res, next) {
 })
 router.get('/login', checkEmail)
 
+router.post('/update')
+
 module.exports = router;

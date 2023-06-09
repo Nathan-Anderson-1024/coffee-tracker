@@ -10,4 +10,6 @@ const checkEmail = (email) => pool.query('SELECT user_id, first_name, last_name,
 
 const getUserId = (email) => pool.query('SELECT user_id FROM users WHERE email = $1', [email])
 
-module.exports = { create, createUser, get, checkEmail, getUserId }
+const updateUserInfo = (username, email) => pool.query('UPDATE users SET username = $1, email = $2', [username, email])
+
+module.exports = { create, createUser, get, checkEmail, getUserId, updateUserInfo }
