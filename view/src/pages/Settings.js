@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { updateInfo } from '../util/fetch';
 
 export default function Settings({username, setUsername, fullName, setFullName, email, setEmail}) {
   const [disabled, setDisabled] = useState(true)
-  const handleUpdateInfo = (e) => {
+  const handleUpdateInfo = async (e) => {
     e.preventDefault();
     console.log('form submitted')
+    //console.log(e.target.fullName.value)
+    const data = new FormData(e.target);
+    console.log(data)
+    await updateInfo(data)
   }
   return (
     <>

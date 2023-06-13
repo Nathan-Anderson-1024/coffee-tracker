@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {read, write, login} = require('../controllers/index');
+const {read, write, login, update} = require('../controllers/index');
 
 const passport = require("passport");
 const { checkEmail } = require('../model/coffee');
@@ -26,7 +26,7 @@ router.post('/logout', function (req, res, next) {
     })
 })
 router.get('/login', checkEmail)
-
-router.post('/update')
+// TODO: Add function from controller
+router.put('/update', update);
 
 module.exports = router;

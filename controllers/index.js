@@ -73,7 +73,11 @@ exports.login = (req, res) => {
 
 
 }
-
-exports.update = async (req, res) => {
-
+// TODO: Create controller function for updating login info
+exports.update = (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, async (err, fields) => {
+    console.log(fields)
+  })
 }
