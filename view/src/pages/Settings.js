@@ -7,8 +7,8 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     e.preventDefault();
     console.log('form submitted')
     //console.log(e.target.fullName.value)
-    const data = new FormData(e.target);
-    console.log(data)
+    const data = new FormData(e.currentTarget);
+    console.log(e.currentTarget)
     await updateInfo(data)
   }
   return (

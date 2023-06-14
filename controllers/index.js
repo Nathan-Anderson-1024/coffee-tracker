@@ -78,6 +78,17 @@ exports.update = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.parse(req, async (err, fields) => {
+    console.log('controller')
     console.log(fields)
+    if (!fields) {
+      return res.status(400).json({
+        error: 'Field is empty'
+      })
+    }
+    else {
+      return res.status(200).json({
+        fields
+      })
+    }
   })
 }

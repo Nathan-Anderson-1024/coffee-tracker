@@ -96,6 +96,9 @@ export const updateInfo = async (formData) => {
     //console.log(formData)
     try {
         const request = await fetch('/api/update', {
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
             method: 'PUT',
             body: formData
         })
