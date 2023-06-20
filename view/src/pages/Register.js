@@ -21,7 +21,6 @@ export default function Register() {
         <input name="password" id='password' type='password' className='border border-black w-2/4 rounded' required></input>
         <div className='flex flex-row w-2/4 justify-evenly'>
           <button type='submit' className='border border-black mt-2 p-1 rounded bg-blue-900 text-white hover:bg-blue-700 w-1/4'>Submit</button>
-          
         </div>
       </form>
       <button className='border border-black mt-6 p-1 rounded bg-blue-600 text-white hover:bg-blue-400 w-1/4'>
