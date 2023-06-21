@@ -10,6 +10,6 @@ const checkEmail = (email) => pool.query('SELECT user_id, first_name, last_name,
 
 const getUserId = (email) => pool.query('SELECT user_id FROM users WHERE email = $1', [email])
 // TODO: Add ability to change full name
-const updateUserInfo = (username, email) => pool.query('UPDATE users SET username = $1, email = $2', [username, email])
+const updateUserInfo = (username, email, olduserName) => pool.query('UPDATE users SET username = $1, email = $2 WHERE username = $3', [username, email, olduserName])
 
 module.exports = { create, createUser, get, checkEmail, getUserId, updateUserInfo }

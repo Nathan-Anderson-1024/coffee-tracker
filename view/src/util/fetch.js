@@ -91,9 +91,6 @@ export const getFirstLastName = async (email) => {
 } 
 // TODO: Update fetch to send form info
 export const updateInfo = async (formData) => {
-    //console.log(formData)
-    //const {fullName, userName, email} = formData
-    //console.log(formData)
     try {
         const request = await fetch('/api/update', {
             // headers: {

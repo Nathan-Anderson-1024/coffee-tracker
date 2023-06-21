@@ -27,6 +27,9 @@ export default function Settings({username, setUsername, fullName, setFullName, 
       <label htmlFor='fullName' className='font-bold'>Full Name</label>
       <input name='fullName' id='fullName' className='border rounded border-slate-900' defaultValue={fullName} onSubmit={(e) => setFullName(e.target.value)}></input>
 
+      <label htmlFor='olduserName' className='font-bold'>Old Username</label>
+      <input name='olduserName' id='olduserName' className='border rounded border-slate-900 text-black' defaultValue={username} readOnly></input>
+
       <label htmlFor='userName' className='font-bold'>Username</label>
       <input name='userName' id='userName' className='border rounded border-slate-900 text-black' defaultValue={username} onSubmit={(e) => setUsername(e.target.value)}></input>
     
