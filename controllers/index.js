@@ -73,7 +73,7 @@ exports.login = (req, res) => {
 
 
 }
-// TODO: Create controller function for updating login info
+// TODO: Create controller function for updating login info, handle email change
 exports.update = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
