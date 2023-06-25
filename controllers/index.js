@@ -79,8 +79,8 @@ exports.update = (req, res) => {
   form.keepExtensions = true;
   form.parse(req, async (err, fields) => {
     console.log('controller')
-    const {fullName, olduserName,userName, email} = fields;
-    console.log(fields)
+    const {fullName,userName, email} = fields;
+    //console.log(fields)
     if (!fields) {
       return res.status(400).json({
         error: 'Field is empty'
@@ -88,8 +88,16 @@ exports.update = (req, res) => {
     }
     else {
       try {
-        const updateResponse = await updateUserInfo(userName, email, olduserName)
-        if (updateResponse) return res.status(200).json({status: 'Updated account info'})
+        const updateResponse = await updateUserInfo(userName, email)
+        if (updateResponse) {
+          return res.status(200).json({
+            username: updateResponse.rows[0].username,
+            firstName: updateResponse.rows[0].first_name,
+            lastName: updateResponse.rows[0].last_name,
+            email: updateResponse.rows[0].email
+
+          })
+        } 
       }
       catch (error) {
         return res.status(400).json({error: error})

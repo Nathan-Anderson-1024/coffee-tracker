@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { loginUser } from '../util/fetch';
-export default function Login({setEmail, loading, setLoading, login, setLogin, username, setUsername, error, setError, fullName, setFullName}) {
+export default function Login({setEmail, email, loading, setLoading, login, setLogin, username, setUsername, error, setError, fullName, setFullName}) {
   // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const nav = useNavigate();
 
 
-  const handleUserName = (e) => {
+  const handleEmail = (e) => {
     const value = e.target.value;
-    setUsername(value);
+    setEmail(value);
   }
   const handlePassword = (e) => {
     const value = e.target.value;
@@ -19,7 +19,7 @@ export default function Login({setEmail, loading, setLoading, login, setLogin, u
   const handleButton = async (e) => {
     e.preventDefault();
     setLoading(true)
-    const status = await loginUser(username, password);
+    const status = await loginUser(email, password);
     if (status === undefined) {
       setLoading(false)
       setLoginError(true);
@@ -34,6 +34,7 @@ export default function Login({setEmail, loading, setLoading, login, setLogin, u
       setLogin(true)
       setFullName(`${json.firstName} ${json.lastName}`)
       setEmail(`${json.email}`)
+      setUsername(`${json.username}`)
       nav('/')
     }
   }
@@ -56,7 +57,7 @@ export default function Login({setEmail, loading, setLoading, login, setLogin, u
     <div className='text-center'>
       <form className='flex flex-col justify-center items-center' onSubmit={(e) => handleButton(e)}>
         <label htmlFor='email'>Email</label>
-        <input onChange={handleUserName} name="email" id='email' type='email' placeholder='test@example.com' className='border border-black w-2/4 rounded'></input>
+        <input onChange={handleEmail} name="email" id='email' type='email' placeholder='test@example.com' className='border border-black w-2/4 rounded'></input>
         <label htmlFor='password'>Password</label>
         <input onChange={handlePassword} name="password" id='password' type='password' placeholder='123456789' className='border border-black w-2/4 rounded'></input>
         <div className='flex flex-row w-2/4 justify-evenly'>

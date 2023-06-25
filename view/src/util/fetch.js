@@ -25,9 +25,9 @@ export const createUser = async (userInfo) => {
     }
 }
 
-export const loginUser = async (username, password) => {
+export const loginUser = async (email, password) => {
     const jsonPayload = JSON.stringify({
-        email: username,
+        email: email,
         password: password,
     })
     try {
@@ -93,9 +93,6 @@ export const getFirstLastName = async (email) => {
 export const updateInfo = async (formData) => {
     try {
         const request = await fetch('/api/update', {
-            // headers: {
-            //     "Content-Type": "application/json"
-            // },
             method: 'PUT',
             body: formData
         })
