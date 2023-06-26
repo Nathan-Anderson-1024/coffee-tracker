@@ -103,3 +103,15 @@ export const updateInfo = async (formData) => {
         return error
     }
 }
+
+export const updatePassword = async (formData) => {
+    try {
+        const request = await fetch('/api/update/password', {
+            method: 'PUT',
+            body: formData
+        })
+        const content = await request.json();
+        return content
+    }
+    catch (error) {return error}
+}

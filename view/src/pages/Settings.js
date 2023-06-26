@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { updateInfo } from '../util/fetch';
+import { updateInfo, updatePassword } from '../util/fetch';
 
 export default function Settings({username, setUsername, fullName, setFullName, email, setEmail}) {
   const [disabled, setDisabled] = useState(true)
@@ -18,6 +18,12 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     setTimeout(() => {
       setShowMessage(false)
     }, 2000)
+  }
+  const updatePassword = async (e) => {
+    e.preventDefault();
+    console.log('password updated')
+    const data = new FormData(e.currentTarget);
+    const response = await updatePassword(data);
   }
   return (
     <>
@@ -51,14 +57,14 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     </div> }
     <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2 className='underline mt-10 font-bold'>Change Password</h2>
-      <form className='flex flex-col justify-center items-center mt-2 mb-10'>
+      <form className='flex flex-col justify-center items-center mt-2 mb-10' onSubmit={(e) => updatePassword(e)}>
         <label htmlFor='currentPassword'>Current Password</label>
-        <input id='currentPassword' className='border rounded border-slate-900'></input>
+        <input type='password' id='currentPassword' name='currentPassword' className='border rounded border-slate-900'></input>
         <label htmlFor='newPassword'>New Password</label>
-        <input id='NewPassword' className='border rounded border-slate-900'></input>
+        <input type='password' id='NewPassword' name='NewPassword' className='border rounded border-slate-900'></input>
         <label htmlFor='confirmNewPassword'>Confirm New Password</label>
-        <input id='confirmNewPassword' className='border rounded border-slate-900'></input>
-        <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white'>Update Password</button>
+        <input type='password' id='confirmNewPassword' name='confirmNewPassword' className='border rounded border-slate-900'></input>
+        <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white' type='submit'>Update Password</button>
       </form>
     </div>
     </>
