@@ -78,9 +78,9 @@ exports.update = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.parse(req, async (err, fields) => {
-    console.log('controller')
-    const {fullName,userName, email} = fields;
-    //console.log(fields)
+    const {fullName ,userName, email} = fields;
+    const firstName = fullName.split(" ")[0];
+    const lastName = fullName.split(" ")[1];
     if (!fields) {
       return res.status(400).json({
         error: 'Field is empty'
@@ -88,7 +88,7 @@ exports.update = (req, res) => {
     }
     else {
       try {
-        const updateResponse = await updateUserInfo(userName, email)
+        const updateResponse = await updateUserInfo(userName, email, firstName, lastName)
         if (updateResponse) {
           return res.status(200).json({
             username: updateResponse.rows[0].username,
