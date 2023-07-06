@@ -104,11 +104,14 @@ export const updateInfo = async (formData) => {
     }
 }
 
-export const updatePassword = async (formData) => {
+export const updatePasswordInfo = async (formData, email) => {
+    
+    const allData = {...formData, email: email}
+    console.log(allData)
     try {
         const request = await fetch('/api/update/password', {
             method: 'PUT',
-            body: formData
+            body: allData
         })
         const content = await request.json();
         return content

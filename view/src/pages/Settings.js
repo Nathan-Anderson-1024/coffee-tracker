@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { updateInfo, updatePassword } from '../util/fetch';
+import { updateInfo, updatePasswordInfo } from '../util/fetch';
 
 export default function Settings({username, setUsername, fullName, setFullName, email, setEmail}) {
   const [disabled, setDisabled] = useState(true)
@@ -23,7 +23,7 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     e.preventDefault();
     console.log('password updated')
     const data = new FormData(e.currentTarget);
-    const response = await updatePassword(data);
+    const response = await updatePasswordInfo(data, email);
   }
   return (
     <>
@@ -57,7 +57,7 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     </div> }
     <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2 className='underline mt-10 font-bold'>Change Password</h2>
-      <form className='flex flex-col justify-center items-center mt-2 mb-10' onSubmit={(e) => updatePassword(e)}>
+      <form className='flex flex-col justify-center items-center mt-2 mb-10' onSubmit={e => updatePassword(e)}>
         <label htmlFor='currentPassword'>Current Password</label>
         <input type='password' id='currentPassword' name='currentPassword' className='border rounded border-slate-900'></input>
         <label htmlFor='newPassword'>New Password</label>

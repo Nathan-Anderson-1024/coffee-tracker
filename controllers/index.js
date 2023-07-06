@@ -1,4 +1,4 @@
-const {get, createUser, checkEmail, getUserId, updateUserInfo} = require('../model/coffee');
+const {get, createUser, checkEmail, getUserId, updateUserInfo, updateUserPassword} = require('../model/coffee');
 const formidable = require('formidable');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
@@ -111,6 +111,22 @@ exports.updatePassword = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.parse(req, async (err, fields) => {
-    console.log(fields)
+    const {currentPassword, NewPassword, confirmNewPassword, email} = fields;
+    if (!fields) {
+      return res.status(400).json({
+        error: 'Field is empty'
+      })
+    }
+    else {
+      try {
+        const updateResponse = await updateUserPassword(NewPassword, email);
+        if (updateResponse) {
+          return res.sendStatus(200)
+        }
+      }
+      catch (error) {
+        return res.status(400).json({error: error})
+      }
+    }
   })
 }

@@ -12,4 +12,6 @@ const getUserId = (email) => pool.query('SELECT user_id FROM users WHERE email =
 
 const updateUserInfo = (username, email, firstName, lastName) => pool.query('UPDATE users SET username = $1, email = $2, first_name = $3, last_name = $4 WHERE email = $2 RETURNING *', [username, email, firstName, lastName])
 
-module.exports = { create, createUser, get, checkEmail, getUserId, updateUserInfo }
+const updateUserPassword = (NewPassword, email) => pool.query('UPDATE users SET password = $1 WHERE email = $2 RETURNING *', [NewPassword, email]);
+
+module.exports = { create, createUser, get, checkEmail, getUserId, updateUserInfo, updateUserPassword }
