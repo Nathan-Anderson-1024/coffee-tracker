@@ -27,7 +27,15 @@ router.post('/logout', function (req, res, next) {
 })
 router.get('/login', checkEmail)
 // TODO: Add function from controller
-router.put('/update', update);
-router.put('/update/password', updatePassword)
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+router.put('/update', loggedIn, update);
+router.put('/update/password', loggedIn, updatePassword)
 
 module.exports = router;

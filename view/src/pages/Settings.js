@@ -43,7 +43,7 @@ export default function Settings({username, setUsername, fullName, setFullName, 
   }
   return (
     <>
-    <form className='flex flex-col justify-center items-center mt-5' onSubmit={e => handleUpdateInfo(e)}>
+    {email && <form className='flex flex-col justify-center items-center mt-5' onSubmit={e => handleUpdateInfo(e)}>
       <label htmlFor='fullName' className='font-bold'>Full Name</label>
       <input name='fullName' id='fullName' className='border rounded border-slate-900' defaultValue={fullName} onSubmit={(e) => setFullName(e.target.value)}></input>
 
@@ -54,11 +54,11 @@ export default function Settings({username, setUsername, fullName, setFullName, 
       <input name='email' id='email' className='border rounded border-slate-900' defaultValue={email} onSubmit={(e) => setEmail(e.target.value)}></input>
       
       <button className='border border-slate-900 rounded mt-5 p-2 bg-blue-700 text-white' type='submit'>Update Information</button>
-    </form>
+    </form> }
     {showMessage && <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2>Information changed successfully.</h2>
     </div> }
-    <div className='flex flex-col justify-center items-center mt-10 border-y'>
+    {email && <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2 className='underline mt-10 font-bold'>Change Password</h2>
       <form className='flex flex-col justify-center items-center mt-2 mb-10' onSubmit={e => updatePassword(e)}>
         <label htmlFor='currentPassword'>Current Password</label>
@@ -75,7 +75,12 @@ export default function Settings({username, setUsername, fullName, setFullName, 
     {showError && <div className='flex flex-col justify-center items-center mt-10 border-y'>
       <h2>Invalid Password Provided.</h2>
     </div> }
-    </div>
+    </div> }
+    {!email &&
+     <div className='flex text-center flex-col justify-center items-center'>
+      <h1>Please Login or Register to View this Page.</h1>
+     </div>}
     </>
+    
   )
 }
