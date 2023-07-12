@@ -29,7 +29,7 @@ export default function NavBar({username, login, fullName, setLogin}) {
                     </button> : <button className='text-white'><NavLink to={'/login'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "hidden" : ""}>Login</NavLink></button>}
                     {login ? <div className={`absolute top-2 left-10 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 ${clicked ? 'visible' : 'hidden'}`} id="user-dropdown">
                         <div className="px-4 py-3">
-                            <span className="block text-sm text-gray-900 dark:text-white">{fullName}</span>
+                            <span className="block text-sm text-gray-900 dark:text-white">{fullName} </span>
                             <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{username}</span>
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
