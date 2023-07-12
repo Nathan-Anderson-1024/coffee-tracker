@@ -107,26 +107,27 @@ exports.update = (req, res) => {
   })
 }
 
-exports.updatePassword = (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, async (err, fields) => {
-    const {currentPassword, NewPassword, confirmNewPassword, email} = fields;
-    if (!fields) {
-      return res.status(400).json({
-        error: 'Field is empty'
+exports.updatePassword = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({
+      error: 'Field is empty'
       })
-    }
-    else {
-      try {
-        const updateResponse = await updateUserPassword(NewPassword, email);
-        if (updateResponse) {
-          return res.sendStatus(200)
-        }
+  }
+  //console.log(req.body)
+  const checkEmailInfo = await checkEmail(req.body.email);
+  const storedPassword = checkEmailInfo.rows[0].password;
+  const compare = await bcrypt.compare(req.body.currentPassword, storedPassword);
+  if (!compare) return res.status(400).json({error: 'current password does not match our records.'});
+  else {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+      const updateResponse = await updateUserPassword(hashedPassword, req.body.email);
+      if (updateResponse) {
+        return res.sendStatus(200)
       }
-      catch (error) {
-        return res.status(400).json({error: error})
-      }
     }
-  })
+    catch (error) {
+      return res.status(400).json({error: error})
+    }
+  }
 }

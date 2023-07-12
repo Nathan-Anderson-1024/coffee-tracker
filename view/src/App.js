@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import { Route, Routes } from "react-router-dom"
-import Caffeine from './pages/Caffeine';
+import Caffeine from './pages/Submit';
 import TrendAnalysis from './pages/TrendAnalysis'
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { getProducts, getFirstLastName } from './util/fetch';
 import Product from './components/Product';
 import Register from './pages/Register';
+import Submit from './pages/Submit';
 
 function App() {
   const [error, setError] = useState(false);
@@ -52,7 +53,7 @@ function App() {
       <NavBar username={username} login={login} fullName={fullName} setLogin={setLogin}></NavBar>
       <Routes>
         <Route path="/" element={<Home products={productList} setProductList={setProductList} />}></Route>
-        <Route path="/caffeine" element={<Caffeine />}></Route>
+        <Route path="/submit" element={<Submit />}></Route>
         <Route path="/analyze" element={<TrendAnalysis />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/settings" element={<Settings email={email} setEmail={setEmail} username={username} setUsername={setUsername} fullName={fullName} setFullName={setFullName} />}></Route>
